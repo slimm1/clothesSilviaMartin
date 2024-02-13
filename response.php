@@ -20,15 +20,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Conexión fallida: " . $conn->connect_error);
     }
 
-    $consulta = "SELECT * FROM nombre_tabla";
-    $resultado = $conexion->query($consulta);
+    $getAll = "SELECT * FROM nombre_tabla";
+    $resultado = $conexion->query($getAll);
 
+    // Creación de la tabla HTML
+    echo "<table border='1'>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Temporada</th>
+            <th>Estilo</th>
+            <th>Talla</th>
+            <th>Precio</th>
+        </tr>";
+
+    // Estructura de insercción de datos
+    while ($fila = $resultado->fetch_assoc()) {
+        echo "<tr>
+                <td>" . $fila['id'] . "</td>
+                <td>" . $fila['nombre'] . "</td>
+                <td>" . $fila['temporada'] . "</td>
+                <td>" . $fila['estilo'] . "</td>
+                <td>" . $fila['talla'] . "</td>
+                <td>" . $fila['precio'] . "</td>
+                </tr>";
+    }
+
+    echo "</table>";
     
     // Insertar nuevo Articulo en la base de datos
-    $sql = "INSERT INTO articulos (nombre, temporada, estilo, talla, precio) VALUES ('$nombre', '$temporada','$estilo','$talla','$precio')";
+    $queryInsert = "INSERT INTO articulos (nombre, temporada, estilo, talla, precio) VALUES ('$nombre', '$temporada','$estilo','$talla','$precio')";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($queryInsert) === TRUE) {
         echo "Artículo agregado correctamente";
+        <?php include('response.php'); ?>
     } else {
         echo "Error al agregar el artículo: " . $conn->error;
     }
