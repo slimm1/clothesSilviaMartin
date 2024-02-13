@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $consulta = "SELECT * FROM nombre_tabla";
     $resultado = $conexion->query($consulta);
 
+    
     // Insertar nuevo Articulo en la base de datos
     $sql = "INSERT INTO articulos (nombre, temporada, estilo, talla, precio) VALUES ('$nombre', '$temporada','$estilo','$talla','$precio')";
 
