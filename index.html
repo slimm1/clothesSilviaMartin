@@ -3,18 +3,63 @@
     <head>
         <meta charset="UTF-8">
         <title>Tabla de Datos</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form action="response.php" method="post">
-            <p>Introduce Nombre:
-                <input name="nombre" type="txt" size="15"></p>
-                <p>Introduce Apellidos:
-                <input name="apellidos" type="txt" size="15"></p><input type="submit" name="ver" value="ver">
-                <input type="reset" value="reset"></p>
+        <div id="mainCointainer">
+            <div id="title">
+                <h1>Tabla de Datos</h1>
+            </div>
+            <div id="formContainer">
+                <form action="response.php" method="post">
 
-        </form>
-        
-        <?php include('response.php'); ?>
+                        <label for="nombre">Nombre:</label>
+                        <input id ="nombre" name="nombre" type="text" >
 
+                        <label for="temporada">Temporada:</label>
+                        <input id ="temporada" name="temporada" type="text">
+
+                        <label for="estilo">Estilo:</label>
+                        <input id="estilo" name="estilo" type="text">
+
+                        <label for="talla">Talla:</label>
+                        <input id="talla" name="talla" type="text">
+
+                        <label for="precio">Precio:</label>
+                        <input id="precio" name="precio" type="text">
+                        
+                        <input type="submit" name="Enviar" value="ver">
+                </form>
+            </div>
+            <div id="tableContainer">
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Temporada</th>
+                        <th>Estilo</th>
+                        <th>Talla</th>
+                        <th>Precio</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--<?php include('response.php'); ?>-->
     </body>
 </html>
