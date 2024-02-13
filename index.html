@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tabla de Datos</title>
+    </head>
+    <body>
+        <form action="response.php" method="post">
+            <p>Introduce Nombre:
+                <input name="nombre" type="txt" size="15"></p>
+                <p>Introduce Apellidos:
+                <input name="apellidos" type="txt" size="15"></p><input type="submit" name="ver" value="ver">
+                <input type="reset" value="reset"></p>
+
+        </form>
+        
+        <?php include('response.php'); ?>
+
+    </body>
+</html>
