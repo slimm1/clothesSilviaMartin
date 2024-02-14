@@ -29,7 +29,8 @@ body{
 
 #title {
     text-align: center;
-    background-color: #dddddd;
+    color: #ffffff;
+    font-size: 20px;
 }
 
 form{
