@@ -1,23 +1,25 @@
 <?php
-// Conectar a la base de datos
+// Credenciales de acceso a la base de datos
 $servername = "localhost";
 $username = "root";
 $password = "root";
 $database = "clothes";
 
+//crea la conexion a traves de mysqli
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Verificar la conexión
+// si la conexion falla, mostrar el error
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consulta SQL para seleccionar los datos
+// recoge los datos de la tabla articulos
 $sql = "SELECT id, nombre, temporada, estilo, talla, precio FROM articulos";
 $result = $conn->query($sql);
 
-// Generar filas de tabla con datos recuperados
+// si el numero de filas es mayor a 0, mostrar los datos
 if ($result->num_rows > 0) {
+    // salida de cada fila. fetch_assoc() recoge una fila de resultados como un array asociativo
     while($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["id"] . "</td>";

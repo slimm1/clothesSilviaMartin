@@ -1,5 +1,5 @@
 <?php
-// Verificar si se ha enviado el formulario
+// Verificar si se ha enviado el formulario a través del input en html con tipo post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recoger los datos del formulario
     $nombre = $_POST["nombre"];
@@ -8,15 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $talla = $_POST["talla"];
     $precio = $_POST["precio"];
     
-    // Conectar a la base de datos
+    // Credenciales de acceso a la bd
     $servername = "localhost";
     $username = "root";
     $password = "root";
     $database = "clothes";
-    
+
+    //esta linea de código es para que se conecte a la base de datos
     $conn = new mysqli($servername, $username, $password, $database);
     
-    // Verificar la conexión
+    // si la conexión falla, mostrar el error
     if ($conn->connect_error) {
         die("Conexión fallida: " . $conn->connect_error);
     }
@@ -26,49 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Ejecutar la consulta
     if ($conn->query($sql) === TRUE) {
-        mostrarDatosArticulos();
+        //actualizar la página, ejecuta response.php
+        header("Location: index.php");
     } else {
         echo "Error al insertar datos: " . $conn->error;
     }
     
-    // Cerrar la conexión
-    $conn->close();
-}
-
-function mostrarDatosArticulos() {
-    // Conectar a la base de datos
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $database = "clothes";
-
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
-
-    // Consulta SQL para seleccionar los datos
-    $sql = "SELECT id, nombre, temporada, estilo, talla, precio FROM articulos";
-    $result = $conn->query($sql);
-
-    // Generar filas de tabla con datos recuperados
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["id"] . "</td>";
-            echo "<td>" . $row["nombre"] . "</td>";
-            echo "<td>" . $row["temporada"] . "</td>";
-            echo "<td>" . $row["estilo"] . "</td>";
-            echo "<td>" . $row["talla"] . "</td>";
-            echo "<td>" . $row["precio"] . "</td>";
-            echo "</tr>";
-        }
-    } else {
-        echo "<tr><td colspan='6'>No hay resultados</td></tr>";
-    }
-
     // Cerrar la conexión
     $conn->close();
 }
